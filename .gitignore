@@ -8,4 +8,7 @@ coverage/
 !.env.example
 PRD.md
 SECURITY_REVIEW.md
-.agent/ 
+.agent/
+# SQLite local database (not used in production)
+prisma/*.db
+prisma/*.db-journal

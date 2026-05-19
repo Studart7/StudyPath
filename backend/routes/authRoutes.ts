@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { register, login } from '../controllers/authController.js';
+import { getMe } from '../controllers/authController.js';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
-router.post('/register', register);
-router.post('/login', login);
+// Get current authenticated user (syncs with our DB via middleware)
+router.get('/me', authMiddleware, getMe);
 
 export default router;

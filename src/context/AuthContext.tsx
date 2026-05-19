@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import { supabase } from '../lib/supabase';
+import { Session } from '@supabase/supabase-js';
 
 interface User {
   id: string;
@@ -10,44 +11,51 @@ interface User {
 interface AuthContextType {
   user: User | null;
   token: string | null;
-  login: (token: string, user: User) => void;
-  logout: () => void;
+  logout: () => Promise<void>;
   isAuthenticated: boolean;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('studyPathToken');
-    const storedUser = localStorage.getItem('studyPathUser');
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setIsLoading(false);
+    });
 
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
-    }
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const login = (newToken: string, newUser: User) => {
-    setToken(newToken);
-    setUser(newUser);
-    localStorage.setItem('studyPathToken', newToken);
-    localStorage.setItem('studyPathUser', JSON.stringify(newUser));
+  const logout = async () => {
+    await supabase.auth.signOut();
   };
 
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem('studyPathToken');
-    localStorage.removeItem('studyPathUser');
-  };
+  const user: User | null = session?.user ? {
+    id: session.user.id,
+    name: session.user.user_metadata?.name || 'Estudante',
+    email: session.user.email || ''
+  } : null;
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated: !!token }}>
-      {children}
+    <AuthContext.Provider value={{ 
+      user, 
+      token: session?.access_token || null, 
+      logout, 
+      isAuthenticated: !!session,
+      isLoading
+    }}>
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };

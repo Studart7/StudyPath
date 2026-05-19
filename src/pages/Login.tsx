@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext.tsx';
-import api from '../lib/axios.ts';
+import { supabase } from '../lib/supabase.ts';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -9,7 +9,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
-  const { login, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,16 +24,32 @@ export default function Login() {
 
     try {
       if (isLogin) {
-        const res = await api.post('/auth/login', { email, password });
-        login(res.data.token, res.data.user);
-        navigate('/');
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        
+        if (signInError) throw signInError;
+        
+        // Navigation is handled by AuthContext via session change
       } else {
-        await api.post('/auth/register', { name, email, password });
+        const { error: signUpError } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              name,
+            }
+          }
+        });
+        
+        if (signUpError) throw signUpError;
+        
         setIsLogin(true);
-        setError('Conta criada com sucesso! Faça login.');
+        setError('Conta criada com sucesso! Verifique seu e-mail para confirmar.');
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Erro na autenticação');
+      setError(err.message || 'Erro na autenticação');
     }
   };
 

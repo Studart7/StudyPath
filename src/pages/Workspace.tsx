@@ -358,7 +358,7 @@ export default function Workspace() {
                 </div>
 
                 {areaTopics.length === 0 ? (
-                  <div className="text-center py-8 text-xs text-[#a1a19e] border border-dashed border-[#e5e5e3] rounded-xl bg-[#fbfbf9] italic">
+                  <div className="text-center py-8 text-xs text-muted border border-dashed border-border rounded-xl bg-bg italic">
                     Nenhum tópico adicionado. Crie tópicos para segmentar seu estudo.
                   </div>
                 ) : (
@@ -434,7 +434,7 @@ export default function Workspace() {
                 </div>
 
                 {areaTasks.length === 0 ? (
-                  <div className="text-center py-8 text-xs text-[#a1a19e] border border-dashed border-[#e5e5e3] rounded-xl bg-[#fbfbf9] italic">
+                  <div className="text-center py-8 text-xs text-muted border border-dashed border-border rounded-xl bg-bg italic">
                     Nenhuma tarefa pendente. Crie tarefas para organizar suas metas de estudo.
                   </div>
                 ) : (
@@ -593,7 +593,7 @@ export default function Workspace() {
                 </div>
 
                 {areaMaterials.length === 0 ? (
-                  <div className="text-center py-6 text-xs text-[#a1a19e] border border-dashed border-[#e5e5e3] rounded-xl bg-[#fbfbf9] italic">
+                  <div className="text-center py-6 text-xs text-muted border border-dashed border-border rounded-xl bg-bg italic">
                     Nenhum material cadastrado.
                   </div>
                 ) : (
@@ -675,7 +675,7 @@ export default function Workspace() {
             </div>
 
             {areaSessions.length === 0 ? (
-              <div className="text-center py-12 text-sm text-[#a1a19e] border border-dashed border-[#e5e5e3] rounded-xl bg-[#fbfbf9] italic">
+              <div className="text-center py-12 text-sm text-muted border border-dashed border-border rounded-xl bg-bg italic">
                 Nenhuma sessão registrada. Use o cronômetro para marcar seus blocos de estudo.
               </div>
             ) : (
@@ -761,15 +761,15 @@ export default function Workspace() {
 
       {/* --- TOPIC MODAL --- */}
       {topicModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white border border-[#e5e5e3] rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-6 py-4 border-b border-[#e5e5e3] flex justify-between items-center bg-[#f9f9f7]">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-surface border border-border rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-6 py-4 border-b border-border flex justify-between items-center bg-bg">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-text">
                 {editingTopic ? 'Editar Tópico' : 'Novo Tópico'}
               </h2>
               <button 
                 onClick={() => setTopicModalOpen(false)}
-                className="text-[#a1a19e] hover:text-black text-xs font-bold uppercase tracking-wider"
+                className="text-muted hover:text-text text-xs font-bold uppercase tracking-wider"
               >
                 Fechar
               </button>
@@ -855,15 +855,15 @@ export default function Workspace() {
 
       {/* --- TASK MODAL --- */}
       {taskModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white border border-[#e5e5e3] rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-6 py-4 border-b border-[#e5e5e3] flex justify-between items-center bg-[#f9f9f7]">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-surface border border-border rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-6 py-4 border-b border-border flex justify-between items-center bg-bg">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-text">
                 {editingTask ? 'Editar Tarefa' : 'Nova Tarefa'}
               </h2>
               <button 
                 onClick={() => setTaskModalOpen(false)}
-                className="text-[#a1a19e] hover:text-black text-xs font-bold uppercase tracking-wider"
+                className="text-muted hover:text-text text-xs font-bold uppercase tracking-wider"
               >
                 Fechar
               </button>
@@ -972,15 +972,15 @@ export default function Workspace() {
 
       {/* --- MATERIAL MODAL --- */}
       {materialModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white border border-[#e5e5e3] rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-6 py-4 border-b border-[#e5e5e3] flex justify-between items-center bg-[#f9f9f7]">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-surface border border-border rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-6 py-4 border-b border-border flex justify-between items-center bg-bg">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-text">
                 {editingMaterial ? 'Editar Material' : 'Novo Material'}
               </h2>
               <button 
                 onClick={() => setMaterialModalOpen(false)}
-                className="text-[#a1a19e] hover:text-black text-xs font-bold uppercase tracking-wider"
+                className="text-muted hover:text-text text-xs font-bold uppercase tracking-wider"
               >
                 Fechar
               </button>
@@ -1066,15 +1066,15 @@ export default function Workspace() {
 
       {/* --- STUDY SESSION MODAL --- */}
       {sessionModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white border border-[#e5e5e3] rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-6 py-4 border-b border-[#e5e5e3] flex justify-between items-center bg-[#f9f9f7]">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-surface border border-border rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-6 py-4 border-b border-border flex justify-between items-center bg-bg">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-text">
                 Salvar Sessão de Estudo
               </h2>
               <button 
                 onClick={() => setSessionModalOpen(false)}
-                className="text-[#a1a19e] hover:text-black text-xs font-bold uppercase tracking-wider"
+                className="text-muted hover:text-text text-xs font-bold uppercase tracking-wider"
               >
                 Cancelar
               </button>
