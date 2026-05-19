@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String
+  email         String         @unique
+  password_hash String
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+  study_areas   StudyArea[]
+  topics        Topic[]
+  tasks         Task[]
+  materials     Material[]
+  study_sessions StudySession[]
+
+  @@map("users")
+}
+
+model StudyArea {
+  id             String         @id @default(uuid())
+  user_id        String
+  name           String
+  description    String?
+  category       String?
+  goal           String?
+  status         String         @default("ativa")
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+
+  user           User           @relation(fields: [user_id], references: [id])
+  topics         Topic[]
+  tasks          Task[]
+  materials      Material[]
+  study_sessions StudySession[]
+
+  @@map("study_areas")
+}
+
+model Topic {
+  id             String         @id @default(uuid())
+  user_id        String
+  study_area_id  String
+  name           String
+  description    String?
+  difficulty     String?
+  progress       Int            @default(0)
+  status         String         @default("não iniciado")
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+
+  user           User           @relation(fields: [user_id], references: [id])
+  study_area     StudyArea      @relation(fields: [study_area_id], references: [id])
+  tasks          Task[]
+  materials      Material[]
+  study_sessions StudySession[]
+
+  @@map("topics")
+}
+
+model Task {
+  id               String      @id @default(uuid())
+  user_id          String
+  study_area_id    String
+  topic_id         String?
+  title            String
+  description      String?
+  due_date         DateTime?
+  priority         String?
+  difficulty       String?
+  status           String       @default("pendente")
+  completed_at     DateTime?
+  created_at       DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+
+  user             User         @relation(fields: [user_id], references: [id])
+  study_area       StudyArea    @relation(fields: [study_area_id], references: [id])
+  topic            Topic?       @relation(fields: [topic_id], references: [id])
+
+  @@map("tasks")
+}
+
+model Material {
+  id               String      @id @default(uuid())
+  user_id          String
+  study_area_id    String
+  topic_id         String?
+  title            String
+  type             String
+  url              String?
+  description      String?
+  created_at       DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+
+  user             User         @relation(fields: [user_id], references: [id])
+  study_area       StudyArea    @relation(fields: [study_area_id], references: [id])
+  topic            Topic?       @relation(fields: [topic_id], references: [id])
+
+  @@map("materials")
+}
+
+model StudySession {
+  id                   String      @id @default(uuid())
+  user_id              String
+  study_area_id        String
+  topic_id             String?
+  studied_at           DateTime
+  duration_minutes     Int
+  focus_level          Int?
+  perceived_difficulty Int?
+  notes                String?
+  created_at           DateTime    @default(now())
+  updated_at           DateTime    @updatedAt
+
+  user                 User        @relation(fields: [user_id], references: [id])
+  study_area           StudyArea   @relation(fields: [study_area_id], references: [id])
+  topic                Topic?      @relation(fields: [topic_id], references: [id])
+
+  @@map("study_sessions")
+}
