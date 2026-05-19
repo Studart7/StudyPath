@@ -218,15 +218,15 @@ export default function StudyAreas() {
 
       {/* Modal - Add / Edit Area */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md bg-white border border-[#e5e5e3] rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-6 py-4 border-b border-[#e5e5e3] flex justify-between items-center bg-[#f9f9f7]">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md bg-surface border border-border rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-6 py-4 border-b border-border flex justify-between items-center bg-bg">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-text">
                 {editingArea ? 'Editar Área' : 'Nova Área de Estudo'}
               </h2>
               <button 
                 onClick={() => setModalOpen(false)}
-                className="text-[#a1a19e] hover:text-black text-xs font-bold uppercase tracking-wider"
+                className="text-muted hover:text-text text-xs font-bold uppercase tracking-wider"
               >
                 Fechar
               </button>
@@ -241,55 +241,55 @@ export default function StudyAreas() {
               )}
 
               <div>
-                <label className="block text-[10px] font-bold text-[#a1a19e] uppercase tracking-widest mb-1.5">Nome *</label>
+                <label className="block text-[10px] font-bold text-muted uppercase tracking-widest mb-1.5">Nome *</label>
                 <input 
                   type="text" 
                   value={name} 
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-[#e5e5e3] rounded-lg text-sm font-medium focus:outline-none focus:border-black transition-colors"
+                  className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm font-medium focus:outline-none focus:border-primary transition-colors text-text"
                   placeholder="Ex: Programação, Violão, Idiomas"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#a1a19e] uppercase tracking-widest mb-1.5">Categoria</label>
+                <label className="block text-[10px] font-bold text-muted uppercase tracking-widest mb-1.5">Categoria</label>
                 <input 
                   type="text" 
                   value={category} 
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-[#e5e5e3] rounded-lg text-sm font-medium focus:outline-none focus:border-black transition-colors"
+                  className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm font-medium focus:outline-none focus:border-primary transition-colors text-text"
                   placeholder="Ex: Tecnologia, Artes, Línguas"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#a1a19e] uppercase tracking-widest mb-1.5">Descrição</label>
+                <label className="block text-[10px] font-bold text-muted uppercase tracking-widest mb-1.5">Descrição</label>
                 <textarea 
                   value={description} 
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-[#e5e5e3] rounded-lg text-sm font-medium focus:outline-none focus:border-black transition-colors min-h-[60px]"
+                  className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm font-medium focus:outline-none focus:border-primary transition-colors min-h-[60px] text-text"
                   placeholder="Do que se trata esta área?"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#a1a19e] uppercase tracking-widest mb-1.5">Meta principal / Objetivo</label>
+                <label className="block text-[10px] font-bold text-muted uppercase tracking-widest mb-1.5">Meta principal / Objetivo</label>
                 <input 
                   type="text" 
                   value={goal} 
                   onChange={(e) => setGoal(e.target.value)}
-                  className="w-full px-3 py-2 bg-white border border-[#e5e5e3] rounded-lg text-sm font-medium focus:outline-none focus:border-black transition-colors"
+                  className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm font-medium focus:outline-none focus:border-primary transition-colors text-text"
                   placeholder="Ex: Passar na certificação, Ser fluente"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#a1a19e] uppercase tracking-widest mb-1.5">Status</label>
+                <label className="block text-[10px] font-bold text-muted uppercase tracking-widest mb-1.5">Status</label>
                 <select 
                   value={status} 
                   onChange={(e) => setStatus(e.target.value as any)}
-                  className="w-full px-3 py-2 bg-white border border-[#e5e5e3] rounded-lg text-sm font-medium focus:outline-none focus:border-black transition-colors"
+                  className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm font-medium focus:outline-none focus:border-primary transition-colors text-text"
                 >
                   <option value="ativa">Ativa</option>
                   <option value="pausada">Pausada</option>
@@ -299,7 +299,7 @@ export default function StudyAreas() {
 
               <button 
                 type="submit" 
-                className="w-full mt-6 py-2.5 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-zinc-800 transition-colors"
+                className="w-full mt-6 py-2.5 bg-primary text-white text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-opacity-90 transition-colors"
               >
                 {editingArea ? 'Salvar Alterações' : 'Criar Área'}
               </button>

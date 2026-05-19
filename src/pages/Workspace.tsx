@@ -342,11 +342,11 @@ export default function Workspace() {
             <div className="lg:col-span-8 space-y-8">
               
               {/* TOPICS SECTION */}
-              <section className="bg-white border border-[#e5e5e3] rounded-2xl p-5 shadow-sm">
+              <section className="bg-surface border border-border rounded-2xl p-5 shadow-sm">
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#a1a19e]">Tópicos de Estudo</h2>
-                    <p className="text-[10px] text-[#a1a19e] mt-0.5">Subdivisões de aprendizagem desta área</p>
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-muted">Tópicos de Estudo</h2>
+                    <p className="text-[10px] text-muted mt-0.5">Subdivisões de aprendizagem desta área</p>
                   </div>
                   <button 
                     onClick={openNewTopic}
@@ -418,11 +418,11 @@ export default function Workspace() {
               </section>
 
               {/* TASKS SECTION */}
-              <section className="bg-white border border-[#e5e5e3] rounded-2xl p-5 shadow-sm">
+              <section className="bg-surface border border-border rounded-2xl p-5 shadow-sm">
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#a1a19e]">Minhas Tarefas</h2>
-                    <p className="text-[10px] text-[#a1a19e] mt-0.5">Metas práticas a cumprir</p>
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-muted">Minhas Tarefas</h2>
+                    <p className="text-[10px] text-muted mt-0.5">Metas práticas a cumprir</p>
                   </div>
                   <button 
                     onClick={openNewTask}
@@ -531,8 +531,8 @@ export default function Workspace() {
             <div className="lg:col-span-4 space-y-8">
               
               {/* TIMER WIDGET (Sessão de Estudos) */}
-              <section className="bg-black text-white border border-[#2d2d2a] rounded-2xl p-5 shadow-md flex flex-col items-center text-center">
-                <span className="text-[9px] uppercase font-bold tracking-widest text-[#a1a19e] mb-1">Cronômetro de Estudo</span>
+              <section className="bg-surface border border-border rounded-2xl p-5 shadow-md flex flex-col items-center text-center">
+                <span className="text-[9px] uppercase font-bold tracking-widest text-muted mb-1">Cronômetro de Estudo</span>
                 <div className="text-3xl font-bold tracking-tight my-2 font-mono tabular-nums">
                   {formatTime(seconds)}
                 </div>
@@ -577,11 +577,11 @@ export default function Workspace() {
               </section>
 
               {/* MATERIALS SECTION */}
-              <section className="bg-white border border-[#e5e5e3] rounded-2xl p-5 shadow-sm">
+              <section className="bg-surface border border-border rounded-2xl p-5 shadow-sm">
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <h2 className="text-xs font-bold uppercase tracking-widest text-[#a1a19e]">Materiais de Apoio</h2>
-                    <p className="text-[10px] text-[#a1a19e] mt-0.5">Links, vídeos e referências</p>
+                    <h2 className="text-xs font-bold uppercase tracking-widest text-muted">Materiais de Apoio</h2>
+                    <p className="text-[10px] text-muted mt-0.5">Links, vídeos e referências</p>
                   </div>
                   <button 
                     onClick={openNewMaterial}
@@ -656,11 +656,11 @@ export default function Workspace() {
         )}
 
         {activeTab === 'sessoes' && (
-          <div className="bg-white border border-[#e5e5e3] rounded-2xl p-6 shadow-sm max-w-3xl mx-auto">
+          <div className="bg-surface border border-border rounded-2xl p-6 shadow-sm max-w-3xl mx-auto">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a]">Histórico de Sessões</h2>
-                <p className="text-xs text-[#a1a19e] mt-0.5">Acompanhe seu histórico de foco e dedicação</p>
+                <h2 className="text-sm font-bold uppercase tracking-widest text-text">Histórico de Sessões</h2>
+                <p className="text-xs text-muted mt-0.5">Acompanhe seu histórico de foco e dedicação</p>
               </div>
               <button 
                 onClick={() => {
