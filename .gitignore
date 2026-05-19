@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+PRD.md
+SECURITY_REVIEW.md
+.agent/ 
